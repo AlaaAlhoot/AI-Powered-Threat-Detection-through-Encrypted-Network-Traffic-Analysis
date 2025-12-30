@@ -7,109 +7,131 @@
 
 ```mermaid
 graph TB
-    INPUT["🌐 ENCRYPTED NETWORK TRAFFIC<br/>HTTPS | TLS 1.3 | QUIC"]
+    %% ===== Main Input Node =====
+    INPUT["<b>🌐 ENCRYPTED NETWORK TRAFFIC</b><br/><br/>HTTPS • TLS 1.3 • QUIC<br/>Real-time Data Stream"]
     
-    subgraph LAYER1["📥 LAYER 1: DATA COLLECTION"]
-        L1A["Network Interface<br/>Promiscuous Mode"]
-        L1B["Packet Capture Tools<br/>Wireshark | tcpdump"]
-        L1C["Dataset Loader<br/>CIC-IDS2018"]
+    %% ===== LAYER 1: Data Collection =====
+    subgraph LAYER1["<b>📥 LAYER 1: DATA COLLECTION & CAPTURE</b>"]
+        direction TB
+        L1A["<b>Network Interface</b><br/><br/>Promiscuous Mode<br/>Live Traffic Monitoring"]
+        L1B["<b>Packet Capture Tools</b><br/><br/>Wireshark • tcpdump<br/>Raw Packet Data"]
+        L1C["<b>Dataset Loader</b><br/><br/>CIC-IDS2018<br/>Labeled Traffic Samples"]
     end
     
-    subgraph LAYER2["🔧 LAYER 2: PREPROCESSING"]
-        L2A["Data Cleaning<br/>Remove nulls"]
-        L2B["Flow Aggregation<br/>5-tuple grouping"]
-        L2C["Normalization<br/>StandardScaler"]
-        L2D["Class Balancing<br/>SMOTE"]
+    %% ===== LAYER 2: Preprocessing =====
+    subgraph LAYER2["<b>🔧 LAYER 2: DATA PREPROCESSING</b>"]
+        direction TB
+        L2A["<b>Data Cleaning</b><br/><br/>Remove Nulls<br/>Handle Duplicates<br/>Outlier Detection"]
+        L2B["<b>Flow Aggregation</b><br/><br/>5-Tuple Grouping<br/>Src/Dst IP & Port<br/>Protocol Type"]
+        L2C["<b>Normalization</b><br/><br/>StandardScaler<br/>Feature Scaling<br/>Range: 0-1"]
+        L2D["<b>Class Balancing</b><br/><br/>SMOTE Algorithm<br/>Oversample Minority<br/>Balanced Dataset"]
     end
     
-    subgraph LAYER3["📊 LAYER 3: FEATURE EXTRACTION"]
-        L3A["Packet Features<br/>~20 features"]
-        L3B["Flow Features<br/>~60 features"]
-        L3C["Temporal Features<br/>~10 features"]
-        L3D["Feature Vector<br/>80 dimensions"]
+    %% ===== LAYER 3: Feature Extraction =====
+    subgraph LAYER3["<b>📊 LAYER 3: FEATURE ENGINEERING</b>"]
+        direction TB
+        L3A["<b>Packet Features</b><br/><br/>Packet Size<br/>Header Length<br/>Flags & Options<br/><i>≈20 features</i>"]
+        L3B["<b>Flow Features</b><br/><br/>Duration • Bytes/Packets<br/>IAT Statistics<br/>Flow Rate Metrics<br/><i>≈60 features</i>"]
+        L3C["<b>Temporal Features</b><br/><br/>Time Windows<br/>Burst Patterns<br/>Session Duration<br/><i>≈10 features</i>"]
+        L3D["<b>⭐ FINAL FEATURE VECTOR ⭐</b><br/><br/>Combined Features<br/><b>80 Dimensions</b><br/>Ready for ML Models"]
     end
     
-    subgraph LAYER4["🤖 LAYER 4: ML MODELS"]
-        L4A["Random Forest"]
-        L4B["XGBoost"]
-        L4C["CNN"]
-        L4D["LSTM"]
-        L4E["Hybrid CNN-LSTM"]
-        L4F["Best Model Selection"]
+    %% ===== LAYER 4: Machine Learning =====
+    subgraph LAYER4["<b>🤖 LAYER 4: MACHINE LEARNING MODELS</b>"]
+        direction LR
+        L4A["<b>Random Forest</b><br/><br/>Ensemble Learning<br/>Decision Trees<br/>High Accuracy"]
+        L4B["<b>XGBoost</b><br/><br/>Gradient Boosting<br/>Fast Training<br/>Best Performance"]
+        L4C["<b>CNN</b><br/><br/>Deep Learning<br/>Spatial Features<br/>Pattern Recognition"]
+        L4D["<b>LSTM</b><br/><br/>Recurrent Network<br/>Sequential Data<br/>Temporal Patterns"]
+        L4E["<b>Hybrid Model</b><br/><br/>CNN + LSTM<br/>Combined Approach<br/>Enhanced Detection"]
+        L4F["<b>⭐ MODEL SELECTION ⭐</b><br/><br/>Performance Metrics<br/><b>Accuracy: 100%</b><br/>Precision • Recall • F1"]
     end
     
-    subgraph LAYER5["🎯 LAYER 5: THREAT DETECTION"]
-        L5A["Classification<br/>Benign vs Malicious"]
-        L5B["Attack Type<br/>Identification"]
-        L5C["Confidence<br/>Scoring"]
-        L5D["Severity<br/>Assessment"]
+    %% ===== LAYER 5: Threat Detection =====
+    subgraph LAYER5["<b>🎯 LAYER 5: THREAT DETECTION & ANALYSIS</b>"]
+        direction TB
+        L5A["<b>Binary Classification</b><br/><br/>Benign Traffic<br/>vs<br/>Malicious Activity"]
+        L5B["<b>Attack Type Identification</b><br/><br/>Botnet Detection<br/>DDoS • Infiltration<br/>Brute Force • Web Attack"]
+        L5C["<b>Confidence Scoring</b><br/><br/>Probability Score<br/>Range: 0-100%<br/>Threshold: 85%"]
+        L5D["<b>Severity Assessment</b><br/><br/>Risk Level Rating<br/>Low • Medium<br/>High • Critical"]
     end
     
-    subgraph LAYER6["🚨 LAYER 6: ALERT & RESPONSE"]
-        L6A["Real-time<br/>Alerts"]
-        L6B["Logging<br/>System"]
-        L6C["Dashboard<br/>Visualization"]
-        L6D["Notifications<br/>Email/SMS"]
+    %% ===== LAYER 6: Alert & Response =====
+    subgraph LAYER6["<b>🚨 LAYER 6: ALERT & RESPONSE SYSTEM</b>"]
+        direction TB
+        L6A["<b>⚡ Real-time Alerts</b><br/><br/>Instant Detection<br/>Automated Response<br/>< 1 second latency"]
+        L6B["<b>📝 Logging System</b><br/><br/>Event Recording<br/>Audit Trail<br/>Historical Analysis"]
+        L6C["<b>📊 Visualization Dashboard</b><br/><br/>Live Monitoring<br/>Statistics & Graphs<br/>Traffic Analytics"]
+        L6D["<b>📧 Notification System</b><br/><br/>Multi-channel Alerts<br/>Email • SMS • Slack<br/>Security Team Notify"]
     end
     
-    INPUT --> L1A
-    INPUT --> L1B
-    INPUT --> L1C
+    %% ===== Connections =====
+    INPUT ==> L1A
+    INPUT ==> L1B
+    INPUT ==> L1C
     
-    L1A --> L2A
-    L1B --> L2A
-    L1C --> L2A
+    L1A ==> L2A
+    L1B ==> L2A
+    L1C ==> L2A
     
-    L2A --> L2B
-    L2B --> L2C
-    L2C --> L2D
+    L2A ==> L2B
+    L2B ==> L2C
+    L2C ==> L2D
     
-    L2D --> L3A
-    L2D --> L3B
-    L2D --> L3C
+    L2D ==> L3A
+    L2D ==> L3B
+    L2D ==> L3C
     
-    L3A --> L3D
-    L3B --> L3D
-    L3C --> L3D
+    L3A ==> L3D
+    L3B ==> L3D
+    L3C ==> L3D
     
-    L3D --> L4A
-    L3D --> L4B
-    L3D --> L4C
-    L3D --> L4D
-    L3D --> L4E
+    L3D ==> L4A
+    L3D ==> L4B
+    L3D ==> L4C
+    L3D ==> L4D
+    L3D ==> L4E
     
-    L4A --> L4F
-    L4B --> L4F
-    L4C --> L4F
-    L4D --> L4F
-    L4E --> L4F
+    L4A ==> L4F
+    L4B ==> L4F
+    L4C ==> L4F
+    L4D ==> L4F
+    L4E ==> L4F
     
-    L4F --> L5A
-    L5A --> L5B
-    L5B --> L5C
-    L5C --> L5D
+    L4F ==> L5A
+    L5A ==> L5B
+    L5B ==> L5C
+    L5C ==> L5D
     
-    L5D --> L6A
-    L5D --> L6B
-    L5D --> L6C
-    L5D --> L6D
+    L5D ==> L6A
+    L5D ==> L6B
+    L5D ==> L6C
+    L5D ==> L6D
     
-    classDef inputStyle fill:#e3f2fd,stroke:#1976d2,stroke-width:3px
-    classDef layer1Style fill:#fff3e0,stroke:#f57c00,stroke-width:2px
-    classDef layer2Style fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
-    classDef layer3Style fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
-    classDef layer4Style fill:#fff9c4,stroke:#f9a825,stroke-width:2px
-    classDef layer5Style fill:#ffe0b2,stroke:#e64a19,stroke-width:2px
-    classDef layer6Style fill:#ffcdd2,stroke:#c62828,stroke-width:2px
-    classDef highlightStyle fill:#ffd54f,stroke:#f57f17,stroke-width:3px
+    %% ===== Professional Color Scheme with High Contrast =====
+    classDef inputStyle fill:#1565c0,stroke:#0d47a1,stroke-width:5px,color:#ffffff,font-size:16px,font-weight:bold
     
+    classDef layer1Style fill:#fff3e0,stroke:#e65100,stroke-width:4px,color:#1a1a1a,font-size:14px,font-weight:bold
+    
+    classDef layer2Style fill:#f3e5f5,stroke:#6a1b9a,stroke-width:4px,color:#1a1a1a,font-size:14px,font-weight:bold
+    
+    classDef layer3Style fill:#e8f5e9,stroke:#2e7d32,stroke-width:4px,color:#1a1a1a,font-size:14px,font-weight:bold
+    
+    classDef layer4Style fill:#fff9c4,stroke:#f57f17,stroke-width:4px,color:#1a1a1a,font-size:14px,font-weight:bold
+    
+    classDef layer5Style fill:#ffe0b2,stroke:#d84315,stroke-width:4px,color:#1a1a1a,font-size:14px,font-weight:bold
+    
+    classDef layer6Style fill:#ffcdd2,stroke:#b71c1c,stroke-width:4px,color:#1a1a1a,font-size:14px,font-weight:bold
+    
+    classDef highlightStyle fill:#ffd600,stroke:#f57f17,stroke-width:6px,color:#000000,font-size:15px,font-weight:bold
+    
+    %% ===== Apply Styles =====
     class INPUT inputStyle
     class L1A,L1B,L1C layer1Style
     class L2A,L2B,L2C,L2D layer2Style
     class L3A,L3B,L3C layer3Style
-    class L3D highlightStyle
+    class L3D,L4F highlightStyle
     class L4A,L4B,L4C,L4D,L4E layer4Style
-    class L4F highlightStyle
     class L5A,L5B,L5C,L5D layer5Style
     class L6A,L6B,L6C,L6D layer6Style
 ```
